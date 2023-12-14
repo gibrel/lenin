@@ -485,3 +485,8 @@ $RECYCLE.BIN/
 
 # App Settings JSON
 API/appsettings.json
+
+# SQLite databse temp files
+*.db-shm
+*.db-wal
+
