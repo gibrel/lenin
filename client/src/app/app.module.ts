@@ -6,10 +6,10 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http'
 import { CoreModule } from './core/core.module';
-import { ShopModule } from './shop/shop.module';
 import { CURRENCY_MASK_CONFIG, CurrencyMaskConfig, CurrencyMaskModule } from 'ng2-currency-mask';
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
+import { HomeModule } from './home/home.module';
 
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: 'right',
@@ -33,8 +33,8 @@ registerLocaleData(localePt);
     BrowserAnimationsModule,
     HttpClientModule,
     CoreModule,
-    ShopModule,
-    CurrencyMaskModule
+    CurrencyMaskModule,
+    HomeModule
   ],
   providers: [
     { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig },
