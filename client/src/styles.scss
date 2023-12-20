@@ -6,8 +6,19 @@
 /* Importing Datepicker SCSS file. */
 @import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";
 
-/* Font awesome */
+/* Importing bootswatch theme */
+@import "node_modules/bootswatch/dist/united/bootstrap.min.css";
+
+/* Importing Font awesome */
 @import "node_modules/font-awesome/css/font-awesome.min.css";
 
-/* Toaster */
+/* Import ngx-spinner */
+@import "node_modules/ngx-spinner/animations/timer.css";
+
+/* Importing Toaster */
 @import "node_modules/ngx-toastr/toastr.css";
+
+/* Overwriting breadcrum trail */
+label.xng-breadcrumb-trail {
+    color: orange;
+}
