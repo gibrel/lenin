@@ -28,6 +28,12 @@ const routes: Routes = [
     loadChildren: () => import('./account/account.module').then(m => m.AccountModule),
     data: { breadcrumb: { alias: 'account' } }
   },
+  {
+    path: 'orders',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./orders/orders.module').then(m => m.OrdersModule),
+    data: { breadcrumb: { alias: 'orders' } }
+  },
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
