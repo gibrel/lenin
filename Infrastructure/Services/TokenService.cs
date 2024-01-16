@@ -1,9 +1,9 @@
-using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Core.Entities.Identity;
 using Core.Interfaces;
 using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Infrastructure.Services
@@ -37,11 +37,9 @@ namespace Infrastructure.Services
                 Issuer = _config["Token:Issuer"]
             };
 
-            var tokenHandler = new JwtSecurityTokenHandler();
+            var tokenHandler = new JsonWebTokenHandler();
 
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-
-            return tokenHandler.WriteToken(token);
+            return tokenHandler.CreateToken(tokenDescriptor);
         }
     }
 }
