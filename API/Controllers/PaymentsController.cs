@@ -16,14 +16,18 @@ namespace API.Controllers
          * `stripe listen -f https://localhost:5001/api/payments/webhook -e payment_intent.succeeded,payment_intent.payment_failed`
          * The result will be the generated WhSecret to be used on the constant bellow.
         **/
-        private const string WhSecret = "whsec_0f94b2f24da892b00d235694905b693f62151fe313170ffe00e67c592b555172";
+        private readonly string _whSecret;
         private readonly IPaymentService _paymentService;
         private readonly ILogger<PaymentsController> _logger;
 
-        public PaymentsController(IPaymentService paymentService, ILogger<PaymentsController> logger)
+        public PaymentsController(
+            IPaymentService paymentService,
+            ILogger<PaymentsController> logger,
+            IConfiguration config)
         {
             _logger = logger;
             _paymentService = paymentService;
+            _whSecret = config.GetSection("StripeSettings:WhSecret").Value;
         }
 
         [Authorize]
@@ -44,7 +48,7 @@ namespace API.Controllers
             var json = await new StreamReader(Request.Body).ReadToEndAsync();
 
             var stripeEvent = EventUtility.ConstructEvent(json,
-                Request.Headers["Stripe-Signature"], WhSecret);
+                Request.Headers["Stripe-Signature"], _whSecret);
 
             PaymentIntent intent;
             Order order;
